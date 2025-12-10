@@ -153,7 +153,8 @@ install_cursor_free_vip() {
     fi
     
     # Download file
-    if ! curl -L -o "${binary_path}" "$download_url"; then
+    # Added socks 5, simply remove `-x socks5://127.0.0.1:1080` if don't wanna use with socks5 proxy
+    if ! curl -x socks5://127.0.0.1:1080 -L -o "${binary_path}" "$download_url"; then
         echo -e "${RED}❌ Download failed${NC}"
         exit 1
     fi
